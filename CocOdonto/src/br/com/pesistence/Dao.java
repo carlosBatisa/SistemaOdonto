@@ -4,18 +4,24 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class Dao {
+public class Dao  {
 	
-	String password;
-	String url;
-	String user;
+	private String password;
+	private String url;
+	private String user;
 	
-public void Conectar() throws ClassNotFoundException, SQLException {
+	Connection con;
+	
+public void conectar() throws ClassNotFoundException, SQLException {
 	
 	Class.forName("Caminho da Driver.");
 	
-	Connection con = DriverManager.getConnection(url, user, password);
+	con = DriverManager.getConnection(url, user, password);
 	
+}
+
+public void fechar() throws SQLException{
+	con.close();
 }
 
 			
