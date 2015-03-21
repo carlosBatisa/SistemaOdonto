@@ -1,0 +1,12 @@
+drop table paciente;
+create table paciente (
+	idcliente varchar(50),
+	nome varchar(50),
+	rg varchar(50),
+	cpf varchar(50),
+	sexo varchar(50),
+	endereco varchar(50),
+	contato varchar(50)
+);
+
+SELECT * FROM `paciente`;

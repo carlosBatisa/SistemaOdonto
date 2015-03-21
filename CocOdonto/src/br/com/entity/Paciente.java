@@ -1,14 +1,16 @@
 package br.com.entity;
 
 public class Paciente {
-	private Long idCliente;
+	
+	private String idCliente;
 	private String nome;
 	private String rg;
 	private String cpf;
 	private SexoType sexo;	
 	private Endereco endereco; 	
 	private Contato contatos;
-	public Paciente(Long idClinte, String nome, String rg, String cpf,
+	
+	public Paciente(String idClinte, String nome, String rg, String cpf,
 			SexoType sexo, Endereco endereco, Contato contatos) {
 		super();
 		this.idCliente = idClinte;
@@ -22,10 +24,10 @@ public class Paciente {
 	public Paciente() {
 		super();
 	}
-	public Long getIdClinte() {
+	public String getIdClinte() {
 		return idCliente;
 	}
-	public void setIdClinte(Long idClinte) {
+	public void setIdClinte(String idClinte) {
 		this.idCliente = idClinte;
 	}
 	public String getNome() {
