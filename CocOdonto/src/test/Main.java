@@ -1,9 +1,8 @@
-package main;
+package test;
 
 import java.sql.SQLException;
 
 import br.com.entity.Paciente;
-import br.com.pesistence.Dao;
 import br.com.pesistence.PacienteDao;
 
 public class Main {
