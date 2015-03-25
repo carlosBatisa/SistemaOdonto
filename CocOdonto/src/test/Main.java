@@ -18,6 +18,9 @@ PacienteDao pd = new PacienteDao();
 try {
 	
 	pd.inserir(paciente);
+	System.out.println("teste de consulta");
+	pd.consultar();
+	
 } catch (ClassNotFoundException e) {
 	// TODO Auto-generated catch block
 	e.printStackTrace();
