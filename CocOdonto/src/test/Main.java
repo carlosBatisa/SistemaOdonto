@@ -1,33 +1,29 @@
 package test;
 
-import java.sql.SQLException;
-
-import br.com.entity.Paciente;
-import br.com.pesistence.PacienteDao;
+import br.com.entity.Cliente;
+import br.com.pesistence.ClienteDao;
 
 public class Main {
 
 
 public static void main(String[] args) {
-	Paciente paciente = new Paciente();
-	paciente.setIdClinte("12345");
-	paciente.setNome("Carlos");
-	paciente.setRg("7987564321");
-	paciente.setCpf("123456789000");
-PacienteDao pd = new PacienteDao();
-try {
+	Cliente cliente = new Cliente();
 	
-	pd.inserir(paciente);
-	System.out.println("teste de consulta");
-	pd.consultar();
 	
-} catch (ClassNotFoundException e) {
-	// TODO Auto-generated catch block
-	e.printStackTrace();
-} catch (SQLException e) {
+	cliente.setData("25/03/2015");
+
+	cliente.setHora("22:11");
+	cliente.setNome("Carlos de Souza Batista");
+	cliente.setTelefone("2138863012");
+	cliente.setCelular("21976588177");
+	cliente.setPlano("Unimed-Rio");
 	
-	System.out.println(e.getMessage());
-}
+	
+ClienteDao pd = new ClienteDao();
+pd.inserir(cliente);
+System.out.println("teste de consulta");
+pd.consultar();
+//pd.excluir(paciente);
 	
 }
 

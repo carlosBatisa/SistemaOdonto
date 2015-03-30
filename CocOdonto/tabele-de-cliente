@@ -1,12 +1,12 @@
-drop table paciente;
-create table paciente (
-	idcliente varchar(50),
-	nome varchar(50),
-	rg varchar(50),
-	cpf varchar(50),
-	sexo varchar(50),
-	endereco varchar(50),
-	contato varchar(50)
+drop table cliente;
+create table cliente (
+	
+	nome varchar(60),
+	telefone varchar(10),
+	celular varchar(11),
+	data varchar(10),
+	hora varchar(5),
+	
 );
 
-SELECT * FROM `paciente`;
+SELECT * FROM `cliente`;
