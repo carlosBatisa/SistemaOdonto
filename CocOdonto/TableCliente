@@ -1,0 +1,14 @@
+drop table cliente;
+
+
+create table cliente (
+	
+	data varchar(10),
+	hora varchar(5),
+	nome varchar(60),
+	telefone varchar(20),
+	celular varchar(20),
+	plano varchar(30)
+	
+	
+);
