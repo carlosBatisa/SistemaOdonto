@@ -1,0 +1,27 @@
+
+CREATE TABLE cliente (
+idCliente NUMERIC(10) auto_increment  PRIMARY KEY NOT NULL,
+nome VARCHAR(100),
+cpf VARCHAR(30),
+identidade VARCHAR(30),
+telefone VARCHAR(30),
+celular VARCHAR(30),
+plano VARCHAR(60)
+);
+
+CREATE TABLE medico (
+idMedico NUMERIC(10)  auto_increment  PRIMARY KEY NOT NULL,
+nome VARCHAR(100),
+NCR VARCHAR(20)
+);
+
+CREATE TABLE consulta (
+IDCUNSULTA NUMERIC(10)  auto_increment  PRIMARY KEY NOT NULL,
+idMedico NUMERIC(10),
+idCliente NUMERIC(10),
+OBS VARCHAR(255),
+data DATETIME,
+FOREIGN KEY(idMedico) REFERENCES medico (idMedico),
+FOREIGN KEY(idCliente) REFERENCES cliente (idCliente)
+);
+

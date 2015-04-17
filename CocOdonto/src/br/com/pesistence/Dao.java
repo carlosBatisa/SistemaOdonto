@@ -7,14 +7,18 @@ import java.sql.SQLException;
 public class Dao  {
 	
 	private String password="root";
-	private String url="jdbc:mysql://localhost:3306/test";
-	private String user="root";
+	//private String url="jdbc:mysql://localhost:3306/test";
+	
+	private String url="jdbc:h2:libs//basededados";
+	private String user="sa";
 	
 	Connection con;
 	
 public void conectar(){
-	
-	try {
+	/*
+	 * Conexao mysql....
+	 * 
+	try { 
 		Class.forName("com.mysql.jdbc.Driver");
 		con = DriverManager.getConnection(url, user, password);
 		System.out.println("Conectou");
@@ -23,7 +27,24 @@ public void conectar(){
 	} catch (SQLException e) {
 		System.out.println("Erro durante a Conexão...");
 	}
+	*/
+
+	try {
+		Class.forName("org.h2.Driver");
+		con = DriverManager.getConnection(url, user,"");
+		System.out.println("Conectou");
+	} catch (ClassNotFoundException e) {
+		System.out.println("O Class for name não foi indetificado...");
+	} catch (SQLException e) {
+		System.out.println("Erro durante a Conexão..."
+				+ e.getMessage());
+	}
+
+
+
 }
+
+
 
 public void fechar(){
 	try {

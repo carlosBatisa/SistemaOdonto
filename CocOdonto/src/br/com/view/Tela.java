@@ -43,7 +43,6 @@ public class Tela {
 
 	private JFrame frame;
 	private JTextField textpNome;
-	private JTextField textpData;
 	private JTextField textNome;
 	private JTextField textTelefone;
 	private JTextField textCelular;
@@ -51,6 +50,7 @@ public class Tela {
 	private JTextField textHora;
 	private JTable table;
 	private JDateChooser textData;
+	private JDateChooser textpData;
 	
 
 	/**
@@ -101,12 +101,13 @@ public class Tela {
 							.addComponent(painelConsulta, GroupLayout.PREFERRED_SIZE, 624, Short.MAX_VALUE)
 							.addGap(1))
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(11)
-							.addComponent(painelPesquisa, GroupLayout.DEFAULT_SIZE, 624, Short.MAX_VALUE))
-						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(15)
 							.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 620, Short.MAX_VALUE)))
 					.addContainerGap())
+				.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(painelPesquisa, GroupLayout.DEFAULT_SIZE, 624, Short.MAX_VALUE)
+					.addGap(11))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -116,7 +117,7 @@ public class Tela {
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(painelConsulta, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
+					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
 					.addGap(5))
 		);
 		
@@ -217,10 +218,7 @@ public class Tela {
 		lblData_1.setFont(new Font("Arial Black", Font.PLAIN, 12));
 		painelConsulta.add(lblData_1, "2, 8, left, default");
 		
-		 try{
-			 MaskFormatter data = new javax.swing.text.MaskFormatter("##/##/####");
-			 }catch(Exception e){
-			}
+		
 		
 		 try{
 			 MaskFormatter hora = new javax.swing.text.MaskFormatter("##:##");
@@ -267,7 +265,7 @@ public class Tela {
 					 			 			 			 				Cliente cliente = new Cliente();
 							 			 			 			 		cliente.setData(data);
 							 			 			 			 		cliente.setHora(textHora.getText());
-							 			 			 			 		cliente.setNome(textNome.getText());
+							 			 			 			 		cliente.setNome(new String(textNome.getText()).toUpperCase());
 							 			 			 			 		cliente.setTelefone(textTelefone.getText());
 							 			 			 			 		cliente.setCelular(textCelular.getText());
 							 			 			 			 		cliente.setPlano(textPlano.getText());
@@ -327,9 +325,10 @@ public class Tela {
 					 			 			 			 		if (opcao==0) {
 					 			 			 			 		 ControleCliente cc = new ControleCliente();
 					 			 			 			 		 Cliente cliente = new Cliente();
-					 			 			 			 		 cliente.setData(String.valueOf(textData.getDate()));
+					 			 			 			 		 cliente.setData(String.valueOf(new SimpleDateFormat("dd/MM/yyyy").format(textData.getDate())));
 					 			 			 			 		cliente.setHora(textHora.getText());
-					 			 			 			 		 
+					 			 			 			 		 System.out
+																		.println(cliente+"metodo Excluir.");
 					 			 			 			 		 cc.excluirConsulta(cliente);
 					 			 			 			 		 limparCampos();
 					 			 			 			 		 criarTabela(scrollPane);
@@ -341,47 +340,66 @@ public class Tela {
 					 			 			 			 	}
 					 			 			 			 });
 					 			 			 			 painelConsulta.add(btnNewButton, "6, 10");
-		painelPesquisa.setLayout(new BoxLayout(painelPesquisa, BoxLayout.X_AXIS));
+		painelPesquisa.setLayout(new FormLayout(new ColumnSpec[] {
+				FormFactory.RELATED_GAP_COLSPEC,
+				FormFactory.DEFAULT_COLSPEC,
+				FormFactory.RELATED_GAP_COLSPEC,
+				ColumnSpec.decode("50px"),
+				ColumnSpec.decode("193px"),
+				FormFactory.DEFAULT_COLSPEC,
+				FormFactory.RELATED_GAP_COLSPEC,
+				ColumnSpec.decode("max(28dlu;default)"),
+				FormFactory.RELATED_GAP_COLSPEC,
+				ColumnSpec.decode("max(61dlu;default)"),
+				FormFactory.RELATED_GAP_COLSPEC,
+				FormFactory.DEFAULT_COLSPEC,},
+			new RowSpec[] {
+				FormFactory.PARAGRAPH_GAP_ROWSPEC,
+				RowSpec.decode("27px"),}));
 		
 		JLabel lblNome = new JLabel("Nome:  ");
 		lblNome.setFont(new Font("Arial Black", Font.PLAIN, 12));
-		painelPesquisa.add(lblNome);
+		painelPesquisa.add(lblNome, "2, 2, left, center");
 		
 		textpNome = new JTextField();
 		textpNome.setFont(new Font("Arial Black", Font.PLAIN, 12));
-		painelPesquisa.add(textpNome);
-		textpNome.setColumns(40);
+		painelPesquisa.add(textpNome, "4, 2, 3, 1");
+		textpNome.setColumns(35);
 		
-		JLabel lblData = new JLabel("   Data:  ");
+		JLabel lblData = new JLabel("Data:  ");
 		lblData.setFont(new Font("Arial Black", Font.PLAIN, 12));
-		painelPesquisa.add(lblData);
+		painelPesquisa.add(lblData, "8, 2, left, default");
 		
-		try{
-			MaskFormatter data1 = new MaskFormatter("##/##/####");
-			textpData = new JFormattedTextField(data1);
-		}catch(Exception e){
-			
-		}
+		////////// Retirando a mascara para colocar o jChoose Data.
 		
 		
+		JDateChooser textpData_1 = new JDateChooser();
+		painelPesquisa.add(textpData_1, "10, 2, fill, fill");
 		
-		textpData.setFont(new Font("Arial Black", Font.PLAIN, 12));
-		painelPesquisa.add(textpData);
-		textpData.setColumns(10);
+		
+		
 		
 		JButton btnConsulta = new JButton("Pesquisar");
 		btnConsulta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ControleCliente cc = new ControleCliente();
+				
+				ControleCliente cc = new ControleCliente();				
 				Cliente cliente1 = new Cliente();
 				
-				cliente1.setData(textpData.getText());
-				cc.pesquisarPorData(cliente1);
-				limparCampos();
+				
+				Date data = textpData_1.getDate();
+				System.out.println(data);
+				if(data!=null){
+				cliente1.setData(new SimpleDateFormat("dd/MM/yyyy").format(data));
+				}
+				cliente1.setNome(textpNome.getText());
+				
+				System.out.println("Clinte1"+cliente1);
+				
 				
 				
 				// Criando Tabela que pesquisa Pela Data da Consulta
-				
+				System.out.println("Criação da tabela");
 				DefaultTableModel modelo = new DefaultTableModel();
 
 				List<Cliente> lista = null;
@@ -396,6 +414,68 @@ public class Tela {
 				
 				
 				
+				if(cliente1.getNome()!= null){
+					cc.pesquisarPorNome(cliente1);
+					limparCampos();
+					
+					try {
+
+						System.out.println("dentro do try");
+						ClienteDao pd2 = new ClienteDao();
+						lista = pd2.consultarPorNome(cliente1);
+						for (Cliente cliente : lista) {
+							modelo.addRow(new Object[] { cliente.getData(),
+									cliente.getHora(), cliente.getNome(),cliente.getTelefone(),
+									cliente.getCelular(),cliente.getPlano()});
+							
+
+						}
+
+					} catch (Exception e2) {
+						// TODO: handle exception
+					}
+
+					scrollPane.setViewportView(table);
+					
+					
+					
+				}else if (cliente1.getData() != null) {
+					
+					cc.pesquisarPorData(cliente1);
+					limparCampos();
+					
+					try {
+
+						System.out.println("dentro do try");
+						ClienteDao pd2 = new ClienteDao();
+						lista = pd2.consultarPorData(cliente1);
+						for (Cliente cliente : lista) {
+							modelo.addRow(new Object[] { cliente.getData(),
+									cliente.getHora(), cliente.getNome(),cliente.getTelefone(),
+									cliente.getCelular(),cliente.getPlano()});
+							
+
+						}
+					}
+
+					 catch (Exception e2) {
+						// TODO: handle exception
+					}
+
+					scrollPane.setViewportView(table);
+					
+					
+					
+				}//fecha else if
+					
+					
+				
+							
+				
+				
+				
+				
+				
 				// JLabel lblExcluir = new JLabel("Excluir");
 				//.addActionListener(new ActionListener() {
 					 // void actionPerformed(ActionEvent e) {
@@ -405,31 +485,12 @@ public class Tela {
 					// });
 				
 
-				try {
-
-					
-					ClienteDao pd2 = new ClienteDao();
-					lista = pd2.consultarPorData(cliente1);
-					for (Cliente cliente : lista) {
-						modelo.addRow(new Object[] { cliente.getData(),
-								cliente.getHora(), cliente.getNome(),cliente.getTelefone(),
-								cliente.getCelular(),cliente.getPlano()});
-						
-
-					}
-
-				} catch (Exception e2) {
-					// TODO: handle exception
-				}
-
-				scrollPane.setViewportView(table);
-				
-				
-				
-			}
-		});
+		
+	}});
+		
+		
 		btnConsulta.setFont(new Font("Arial Black", Font.PLAIN, 12));
-		painelPesquisa.add(btnConsulta);
+		painelPesquisa.add(btnConsulta, "12, 2");
 		frame.getContentPane().setLayout(groupLayout);
 		
 	
@@ -485,13 +546,13 @@ public class Tela {
 		String t = "";
 		
 		textNome.setText(t);
-		//textData.setDate(new Date());;
+		//textData.setDate(new Date(""));
 		textHora.setText(t);
 		textTelefone.setText(t);
 		textCelular.setText(t);
 		textPlano.setText(t);
 		textpNome.setText(t);
-		textpData.setText(t);
+		//textpData.setDate(null);
 		
 	}
 }

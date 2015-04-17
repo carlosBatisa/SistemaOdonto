@@ -3,7 +3,7 @@ drop table cliente;
 
 create table cliente (
 	
-	data varchar(10),
+	data date,
 	hora varchar(5),
 	nome varchar(60),
 	telefone varchar(20),
